@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/findMore_tablet"
+        android:title="平板电脑"></item>
+    <item android:id="@+id/findMore_cosmetic"
+        android:title="化妆品"></item>
+    <item android:id="@+id/findMore_furniture"
+        android:title="家具"></item>
+
+</menu>

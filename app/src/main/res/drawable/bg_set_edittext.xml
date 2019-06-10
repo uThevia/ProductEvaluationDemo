@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EditText背景-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_window_focused="false" >
+        <!--EditText背景 正常模式-->
+        <!--形状：默认矩形-->
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <!--纯色-->
+            <solid android:color="@android:color/transparent" />
+            <!--角：radius越大圆角越大-->
+            <corners android:radius="10dp"/>
+            <!--边框线-->
+            <stroke
+                android:width="3dp"
+                android:color="@color/littleindigo" />
+        </shape>
+    </item>
+    <item
+        android:state_focused="true">
+        <!--EditText背景 输入模式-->
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <!--字体离边框距离-->
+            <padding
+                android:bottom="3dp"
+                android:left="3dp"
+                android:right="3dp"
+                android:top="3dp" />
+
+            <solid android:color="@android:color/transparent" />
+            <corners android:radius="10dp"/>
+            <stroke
+                android:width="3dp"
+                android:color="@color/indigo" />
+        </shape>
+    </item>
+</selector>

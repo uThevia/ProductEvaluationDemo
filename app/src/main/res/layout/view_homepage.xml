@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--主页的顶部标签-->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout_top"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/littleyellow"
+        android:padding="1.5dp"
+
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabBackground="@drawable/tab_background"
+
+        app:tabIndicatorColor="@color/littleGreen"
+
+        app:tabTextColor="@color/gray"
+        app:tabSelectedTextColor="@color/black"
+        >
+
+    </android.support.design.widget.TabLayout>
+
+    <!--内容页-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_content_child"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

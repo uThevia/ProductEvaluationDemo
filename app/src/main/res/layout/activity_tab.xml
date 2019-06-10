@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <!--内容页-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+    </android.support.v4.view.ViewPager>
+
+
+
+    <!--底部标签栏:
+        padding 边框
+        tabIndicatorHeight="0dp" 隐藏Indicator
+    -->
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_tab_backgroundandridus">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/littleyellow"
+            android:padding="1.5dp"
+
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabBackground="@drawable/tab_background"
+
+            app:tabIndicatorHeight="0dp"
+            app:tabIndicatorColor="@color/littleGreen"
+
+            app:tabTextColor="@color/gray"
+            app:tabSelectedTextColor="@color/black"
+            >
+
+        </android.support.design.widget.TabLayout>
+    </RelativeLayout>
+
+</LinearLayout>
