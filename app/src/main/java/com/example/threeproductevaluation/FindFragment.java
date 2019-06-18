@@ -61,7 +61,7 @@ public class FindFragment extends BottomFragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 strSpinner = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(), "你选中的是:"+strSpinner , Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "你选中的是:"+strSpinner , Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

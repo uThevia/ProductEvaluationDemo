@@ -11,7 +11,7 @@
                 android:width="2dp"
                 android:color="#dcdcdc" />
             <corners
-                android:radius="2dp" />
+                android:radius="10dp" />
             <padding
                 android:left="10dp"
                 android:top="10dp"
@@ -30,7 +30,7 @@
                 android:width="2dp"
                 android:color="#dcdcdc" />
             <corners
-                android:radius="2dp" />
+                android:radius="10dp" />
             <padding
                 android:left="10dp"
                 android:top="10dp"
@@ -39,7 +39,7 @@
         </shape>
     </item>
 
-    <item>
+    <item android:state_focused="false">
         <shape>
             <gradient
                 android:startColor="#ff9d77"
@@ -49,7 +49,7 @@
                 android:width="2dp"
                 android:color="#fad3cf" />
             <corners
-                android:radius="2dp" />
+                android:radius="10dp" />
             <padding
                 android:left="10dp"
                 android:top="10dp"
