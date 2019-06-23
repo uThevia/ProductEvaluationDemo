@@ -61,7 +61,8 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
         String url = null;
         switch (originalActivity){
             case "Follow":
-                url = "http://pc.zol.com.cn/705/7053818.html";
+                url = intent.getStringExtra("url");
+                //url = "http://nb.zol.com.cn/715/7156239.html";
                 break;
             case "Recommend":
                 url = "http://nb.zol.com.cn/716/7165571.html";

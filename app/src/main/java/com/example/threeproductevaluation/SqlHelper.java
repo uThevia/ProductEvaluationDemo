@@ -12,56 +12,98 @@ import java.sql.PreparedStatement;
 
 //数据库管理器
 public class SqlHelper {
+    private final String TAG = "Class SqlHelper";
 
-    ResultSet rs;
-    Statement stmt;
-    Connection conn;
-    PreparedStatement preparedStatement;//warning:我不知道我引对库没
+    //mysql8.0以上
+    //static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String USER = "root";
+    static final String PASSWORD = "root";
+
+    private Connection connection = null;
+    private Statement statement = null;
+    private PreparedStatement preparedStatement = null;//warning:我不知道我引对库没
+    public static ResultSet resultSet = null;
 
     SqlHelper(){    //构造函数。用于初始化数据库
+
         try {
-            String str_IP = "10.0.2.2"; //对真机：记得每次换网以后都要换IP地址
-            Class.forName("com.mysql.jdbc.Driver");
+            // MySQL 8.0 以上版本 - JDBC 驱动名及数据库 URL
+            Class.forName(JDBC_DRIVER);
 
-            //虚拟机url: productevaluationdemo为数据库名
-            String url="jdbc:mysql://" + str_IP + "/productevaluationdemo";
-            //真机url
-            //str_IP = ? ;
-            //String url="jdbc:mysql://" + str_IP + "/productevaluationdemo";
+            // ## 连接URL
+            //连接URL为jdbc:mysql//服务器地址/数据库名?useSSL=false&serverTimezone=UTC
+            String str_IP = null;
+            String connect_url = null;
+
+            //虚拟机IP:
+            //str_IP = "10.0.2.2:3306";
+
+            //真机IP
+            //str_IP = "10.32.219.193:3306";
+
+            //寝室无线网IP
+            //str_IP ="10.63.214.246:3306";
 
 
-            conn = DriverManager.getConnection(url, "root", "root");
-            stmt = conn.createStatement();
+
+            connect_url ="jdbc:mysql://" + str_IP + "/pvd";
+
+            connect_url = "jdbc:mysql://10.0.2.2:3306/pvd";
+            Log.i(TAG, "connect_url = " + connect_url);
+
+
+            connection = DriverManager.getConnection(connect_url, USER, PASSWORD);
+            if(connection == null){
+                Log.i(TAG, "SqlHelper():connection == null");
+            }
+            statement = connection.createStatement();
+            if(statement == null){
+                Log.i(TAG, "SqlHelper():statement == null");
+            }
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            Log.i("Class SqlHelper", "SqlHelper()->ClassNotFoundException");
+            Log.i(TAG, "SqlHelper()->ClassNotFoundException");
         } catch (SQLException e) {
-            Log.i("Class SqlHelper", "SqlHelper()->SQLException");
+            Log.i(TAG, "SqlHelper()->SQLException");
         }
     }
 
-    public void onQuery(String a_sql){    //用于查询数据
+    public ResultSet onQuery(String sql){    //用于查询数据
         try {
-            rs = stmt.executeQuery(a_sql);
+            resultSet = statement.executeQuery(sql);
+            if(resultSet == null)
+                Log.i(TAG, "onQuery:resultSet == null");
         } catch (SQLException e) {
             Log.i("Class SqlHelper", "onQuery()->SQLException");
         }
+        return resultSet;
     }
 
-    public void onUpdate(String a_sql){   //用于插入数据
+    public void onUpdate(String sql){   //用于更新数据
         try {
-            stmt.executeUpdate(a_sql);
+            statement.executeUpdate(sql);
         }
         catch (Exception e){
             Log.i("Class SqlHelper", "onUpdate()->Exception");
         }
     }
 
+    public void onDelete(String sql){   //用于删除数据
+        try {
+            statement.executeUpdate(sql);
+        }
+        catch (Exception e){
+            Log.i("Class SqlHelper", "onDelete()->Exception");
+        }
+    }
+
     public void onFinish(){    //用于结束数据库
         try{
-            rs.close();
-            stmt.close();
-            conn.close();
+            resultSet.close();
+            statement.close();
+            connection.close();
         }
         catch (Exception e){
             Log.i("Class SqlHelper", "onFinish()->Exception");
