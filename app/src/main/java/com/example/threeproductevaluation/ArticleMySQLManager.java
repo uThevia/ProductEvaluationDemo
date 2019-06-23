@@ -1,7 +1,5 @@
 package com.example.threeproductevaluation;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.sql.ResultSet;

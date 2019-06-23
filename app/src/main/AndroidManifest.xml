@@ -9,23 +9,23 @@
         android:allowBackup="true"
         android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         >
         <!--usesCleartextTraffic可访问非加密数据-->
 
-        <activity android:name=".ArticleActivity"></activity>
-        <activity android:name=".ParameterComparisonActivity" />
-        <activity android:name=".TabActivity">
+        <activity android:name="com.example.threeproductevaluation.ArticleActivity"></activity>
+        <activity android:name="com.example.threeproductevaluation.ParameterComparisonActivity" />
+        <activity android:name="com.example.threeproductevaluation.TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MySetActivity" />
+        <activity android:name="com.example.threeproductevaluation.MySetActivity" />
     </application>
 
 </manifest>
