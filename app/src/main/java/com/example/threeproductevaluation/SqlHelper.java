@@ -45,9 +45,7 @@ public class SqlHelper {
             //寝室无线网IP
             //str_IP ="10.63.214.246:3306";
 
-
-
-            connect_url ="jdbc:mysql://" + str_IP + "/pvd";
+            //connect_url ="jdbc:mysql://" + str_IP + "/pvd";
 
             connect_url = "jdbc:mysql://10.0.2.2:3306/pvd";
             Log.i(TAG, "connect_url = " + connect_url);
@@ -66,6 +64,7 @@ public class SqlHelper {
             e.printStackTrace();
             Log.i(TAG, "SqlHelper()->ClassNotFoundException");
         } catch (SQLException e) {
+            e.printStackTrace();
             Log.i(TAG, "SqlHelper()->SQLException");
         }
     }
@@ -76,6 +75,7 @@ public class SqlHelper {
             if(resultSet == null)
                 Log.i(TAG, "onQuery:resultSet == null");
         } catch (SQLException e) {
+            e.printStackTrace();
             Log.i("Class SqlHelper", "onQuery()->SQLException");
         }
         return resultSet;
@@ -86,7 +86,14 @@ public class SqlHelper {
             statement.executeUpdate(sql);
         }
         catch (Exception e){
+            e.printStackTrace();
             Log.i("Class SqlHelper", "onUpdate()->Exception");
+           /* StackTraceElement[] traceElements = e.getStackTrace();
+            StringBuilder sb = new StringBuilder();
+            sb.append(e.getMessage() + "\n");//1异常信息
+            for (StackTraceElement se : traceElements) {
+                sb.append(se + "\n");//1异常信息-抛出方法栈
+            }*/
         }
     }
 
@@ -95,6 +102,7 @@ public class SqlHelper {
             statement.executeUpdate(sql);
         }
         catch (Exception e){
+            e.printStackTrace();
             Log.i("Class SqlHelper", "onDelete()->Exception");
         }
     }
@@ -106,8 +114,8 @@ public class SqlHelper {
             connection.close();
         }
         catch (Exception e){
+            e.printStackTrace();
             Log.i("Class SqlHelper", "onFinish()->Exception");
-
         }
     }
 }

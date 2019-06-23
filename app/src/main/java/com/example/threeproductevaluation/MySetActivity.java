@@ -2,6 +2,8 @@ package com.example.threeproductevaluation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +15,15 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MySetActivity extends AppCompatActivity  {
+public class MySetActivity extends AppCompatActivity implements Runnable{
 
-    ImageView imageView_return;
-    EditText editTextName, editTextOldPw, editTextNewPw;
-    Button set;
-    String nameOld = "DefaultName", passwordOld = "12345678";
+    private ImageView imageView_return;
+    private EditText editTextName, editTextOldPw, editTextNewPw;
+    private Button set;
+
+    private String nameOld = "DefaultName", passwordOld = "123";
+    private String str_setName = "", str_setPw = "";
+
 
     private final static String TAG = "MySetActivity";
     @Override
@@ -54,24 +59,49 @@ public class MySetActivity extends AppCompatActivity  {
                     Toast.makeText(getApplicationContext(), "密码错误，无法保存设置！",   Toast.LENGTH_SHORT).show();
                     break;
                 }
-                String str_name = editTextName.getText().toString();
-                String str_newPw = editTextNewPw.getText().toString();
+                String str_getName = editTextName.getText().toString();
+                String str_getPw = editTextNewPw.getText().toString();
                 Intent intent=new Intent();
                 Bundle bundle = new Bundle();
-                if(str_name.length() > 0){
-                    bundle.putString("nameSet", str_name);
-                    Log.i(TAG, "nameSet = " + str_name);
-                }
-                if(str_newPw.length() > 0){
-                    bundle.putString("passwordSet", str_newPw);
-                    Log.i(TAG, "str_newPw = " + str_newPw);
+                if(str_getName.length() > 0){
+                    str_setName = str_getName;
                 }else{
-                    bundle.putString("passwordSet", passwordOld);
+                    str_setName = nameOld;
                 }
+                Log.i(TAG, "str_setName = " + str_setName);
+                bundle.putString("nameSet", str_setName);
+                String str_setPw = null;
+                if(str_getPw.length() > 0){
+                    str_setPw = str_getPw;
+                }else{
+                    str_setPw = passwordOld;
+                }
+                Log.i(TAG, "str_setPw = " + str_setPw);
+                bundle.putString("passwordSet", str_setPw);
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 finish();
+
+                //更新数据库
+                Thread thread = new Thread(MySetActivity.this);
+                thread.start();
+                Handler handler =new Handler();
+
                 break;
         }
+    }
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        SqlHelper sqlHelper = new SqlHelper();
+        String sql = "update user set User_Name = " + str_setName + ", User_Password = "+ str_setPw +" where User_ID = 1;";
+        sqlHelper.onUpdate(sql);
+        sqlHelper.onFinish();
     }
 }
